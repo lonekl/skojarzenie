@@ -1,0 +1,15 @@
+[package]
+name = "skojarzenie"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[profile.release]
+codegen-units = 1
+opt-level = "s"
+strip = "symbols"
+lto = true
+
+[workspace]
+members = [ "runtime" ]

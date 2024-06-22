@@ -9,7 +9,7 @@ pub fn separate_text(text: String) -> Vec<String> {
     for char in text.chars() {
 
 
-        if !char.is_alphabetic() {
+        if !char.is_alphabetic() && !word_buffer.is_empty() {
 
             list.push(word_buffer);
             word_buffer = "".to_string();
@@ -22,7 +22,9 @@ pub fn separate_text(text: String) -> Vec<String> {
 
 
     }
-    list.push(word_buffer);
+    if !word_buffer.is_empty() {
+        list.push(word_buffer);
+    }
 
     list
 }

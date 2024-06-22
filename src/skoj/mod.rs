@@ -1,6 +1,7 @@
 pub struct Skoj<Word> {
 
     words: Vec<WordContainer<Word>>,
+    last_word: usize,
 
     learn_rate: f32,
 
@@ -11,22 +12,24 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
     const DEFAULT_WORD_RELATION_WEIGHT: f32 = 1.0;
     const DEFAULT_WORD_RELATION: f32 = 1.0;
 
-    const DEFAULT_WORD_FEELING: f32 = 0.0;
+    const DEFAULT_WORD_FEELING: f32 = 1.0;
 
     pub fn new() -> Self {
 
         Self {
             words: vec![],
+            last_word: 0,
             learn_rate: 1.0,
         }
     }
 
     pub fn give_word(&mut self, word: Word) {
         let word_index = self.find_word(word);
-        self.learn(word_index);
+        self.learn(self.last_word);
 
         self.think(word_index);
         self.forget_feelings();
+        self.last_word = word_index;
     }
 
     fn find_word(&mut self, word: Word) -> usize {
@@ -54,11 +57,11 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
     }
 
     fn learn(&mut self, target_index: usize) {
-        let target_word = &mut self.words[target_index];
+        //let target_word = &mut self.words[target_index];
 
-        for relation_index in 0..target_word.likeness.len() {
-            target_word.likeness[relation_index].0 += target_word.feeling / target_word.likeness[relation_index].1;
-            target_word.likeness[relation_index].1 += self.learn_rate;
+        for relation_index in 0..self.words.len() {
+            self.words[target_index].likeness[relation_index].0 += self.words[relation_index].feeling / self.words[target_index].likeness[relation_index].1;
+            self.words[target_index].likeness[relation_index].1 += self.learn_rate;
         }
 
     }
@@ -79,6 +82,7 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
         self.think(word_index);
         self.forget_feelings();
 
+        self.last_word = word_index;
         &self.words[word_index].word
     }
 
@@ -87,7 +91,7 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
         let mut highest_bar = 0.0;
 
         for (word_index, word) in self.words.iter().enumerate() {
-            if word.feeling > highest_bar {
+            if word.feeling > highest_bar && self.last_word != word_index {
                 best_word_index = word_index;
                 highest_bar = word.feeling;
             }

@@ -7,17 +7,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42929202-8218-4846-8b92-ad2fc46321b9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Skojarzenie.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runtime/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runtime/src/main.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/words/mod.rs" afterDir="false" />
+    <list default="true" id="42929202-8218-4846-8b92-ad2fc46321b9" name="Changes" comment="Simple basic runtime.">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/words/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/words/mod.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +42,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true"
+    "last_opened_file_path": "/home/Joraca/Kody/Skojarzenie/Skojarzenie.iml",
+    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RunManager">
@@ -82,6 +81,53 @@
       <option name="presentableId" value="Default" />
       <updated>1718894275020</updated>
     </task>
+    <task id="LOCAL-00001" summary="Default files added.">
+      <option name="closed" value="true" />
+      <created>1718905231871</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718905231871</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Default files added.">
+      <option name="closed" value="true" />
+      <created>1718905237318</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718905237319</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Default files added.">
+      <option name="closed" value="true" />
+      <created>1718905245429</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718905245429</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Made base for. Chat bot?">
+      <option name="closed" value="true" />
+      <created>1718905280799</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718905280799</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Simple basic runtime.">
+      <option name="closed" value="true" />
+      <created>1718905299182</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718905299182</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Default files added." />
+    <MESSAGE value="Made base for. Chat bot?" />
+    <MESSAGE value="Simple basic runtime." />
+    <option name="LAST_COMMIT_MESSAGE" value="Simple basic runtime." />
   </component>
 </project>

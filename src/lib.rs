@@ -1,4 +1,4 @@
-pub mod words;
+pub mod skoj;
 
 
 

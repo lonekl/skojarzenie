@@ -1,4 +1,4 @@
-pub struct WordList<Word> {
+pub struct Skoj<Word> {
 
     words: Vec<WordContainer<Word>>,
 
@@ -6,7 +6,7 @@ pub struct WordList<Word> {
 
 }
 
-impl<Word: PartialEq + Clone> WordList<Word> {
+impl<Word: PartialEq + Clone> Skoj<Word> {
 
     const DEFAULT_WORD_RELATION_WEIGHT: f32 = 1.0;
     const DEFAULT_WORD_RELATION: f32 = 1.0;

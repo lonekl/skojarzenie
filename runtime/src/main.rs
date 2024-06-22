@@ -1,5 +1,40 @@
-fn main() {
+use std::io::{stdin, stdout, Write};
+use skojarzenie::separate_text;
+use skojarzenie::skoj::Skoj;
 
-    eprintln!("{}", skojarzenie::separate_text("Człowiek dla samego siebie jest o wiele więcej skomplikowaną i o wiele trudniejszą do wytłumaczenia istotą niż dla innych, bo ma przed sobą cały świat wewnętrzny, dla tych innych niedostrzegalny i tym samym poniekąd nie istniejący. Gubimy się we własnej duszy, nie umiejąc ani określenia, ani nazwy znaleźć dla rozmaitych jej składników, nie wiedząc, że w jej głębi drzemią instynkty zdolne w odpowiedniej chwili nad całym naszym jestestwem zapanować. I czasami jeden fakt, jedno spostrzeżenie w wewnętrznym świecie jak błyskawica oświetla wnętrze naszej własnej duszy, pozwala nam dojrzeć w niej pierwiastki, o których nigdyśmy nie myśleli i istnienia ich nigdy nie przypuszczali.".to_string()).join(" "));
+fn main() {
+    let mut skoj = Skoj::new();
+
+    loop {
+        print!("[You]: ");
+        stdout().flush().unwrap();
+
+        let mut user_input = "".to_string();
+        stdin().read_line(&mut user_input).unwrap();
+
+        if &user_input == "exit\n" {
+            break
+        }
+
+        for word in separate_text(user_input) {
+            skoj.give_word(word);
+        }
+
+        print!("[Skoj]: ");
+        for _ in 0..100 {
+            let skoj_word = skoj.get_word().as_str();
+            print!("{skoj_word}");
+
+            if skoj_word == "." {
+                break
+            }
+            if skoj_word != "," {
+                print!(" ");
+            }
+
+        }
+        println!();
+
+    }
 
 }

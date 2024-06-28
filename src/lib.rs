@@ -9,7 +9,9 @@ pub fn separate_text(text: String) -> Vec<String> {
     for char in text.chars() {
 
 
-        if !char.is_alphabetic() && !word_buffer.is_empty() {
+        if (!char.is_alphabetic() && !word_buffer.is_empty())
+            ||
+            word_buffer.chars().next().map(|buffer_char| !buffer_char.is_alphabetic()).unwrap_or(false) {
 
             list.push(word_buffer);
             word_buffer = "".to_string();

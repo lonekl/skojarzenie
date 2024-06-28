@@ -12,7 +12,8 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
     const DEFAULT_WORD_RELATION_WEIGHT: f32 = 1.0;
     const DEFAULT_WORD_RELATION: f32 = 1.0;
 
-    const DEFAULT_WORD_FEELING: f32 = 1.0;
+    const DEFAULT_WORD_FEELING: f32 = 0.0;
+    const DEFAULT_WORD_FEELING_ADD: f32 = 1.0;
 
     pub fn new() -> Self {
 
@@ -25,6 +26,7 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
 
     pub fn give_word(&mut self, word: Word) {
         let word_index = self.find_word(word);
+        self.words[word_index].feeling += Self::DEFAULT_WORD_FEELING_ADD;
         self.learn(self.last_word);
 
         self.think(word_index);
@@ -91,7 +93,7 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
         let mut highest_bar = 0.0;
 
         for (word_index, word) in self.words.iter().enumerate() {
-            if word.feeling > highest_bar && self.last_word != word_index {
+            if word.feeling * word.likeness[self.last_word].0 > highest_bar && self.last_word != word_index {
                 best_word_index = word_index;
                 highest_bar = word.feeling;
             }
@@ -105,7 +107,7 @@ impl<Word: PartialEq + Clone> Skoj<Word> {
     fn think(&mut self, last_word_index: usize) {
 
         for word_index in 0..self.words.len() {
-            self.words[word_index].feeling *= self.words[last_word_index].likeness[word_index].0;
+            self.words[word_index].feeling += self.words[last_word_index].likeness[word_index].0;
         }
 
     }

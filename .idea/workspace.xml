@@ -7,9 +7,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42929202-8218-4846-8b92-ad2fc46321b9" name="Changes" comment="Fixed `separate_text()` function.">
+    <list default="true" id="42929202-8218-4846-8b92-ad2fc46321b9" name="Changes" comment="I don't know.">
+      <change afterPath="$PROJECT_DIR$/runtime/src/interface/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runtime/src/interface/terminal/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/skoj/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/skoj/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/runtime/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +169,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719559585041</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Attempted to fix my AI. I need to make a better debugging console.">
+      <option name="closed" value="true" />
+      <created>1719559928192</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719559928192</updated>
+    </task>
+    <task id="LOCAL-00013" summary="I don't know.">
+      <option name="closed" value="true" />
+      <created>1719559935247</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1719559935248</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -180,6 +198,8 @@
     <MESSAGE value="Made basic terminal runtime." />
     <MESSAGE value="Fixed bot a little." />
     <MESSAGE value="Fixed `separate_text()` function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed `separate_text()` function." />
+    <MESSAGE value="Attempted to fix my AI. I need to make a better debugging console." />
+    <MESSAGE value="I don't know." />
+    <option name="LAST_COMMIT_MESSAGE" value="I don't know." />
   </component>
 </project>

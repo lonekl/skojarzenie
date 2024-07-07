@@ -1,19 +1,86 @@
-use std::str::Chars;
+use crate::interface::terminal::TerminalProjectReturn;
 
 pub const COMMANDS: () = ();
 
 pub struct Command {
 
     pub name_id: &'static str,
-    /// List of command acceptable flags. Example `["--verbose", Some('v')]`
+    /// List of command acceptable flags. Example `["--verbose", Some('v')]`.
     pub flags: &'static [(&'static str, Option<char>)],
-    execute_code: fn(Vec<bool>, Vec<String>),
+    execute_code: fn(Vec<bool>, Vec<String>) -> TerminalProjectReturn,
 
 }
 
 impl Command {
 
-    pub fn execute(arguments: Vec<String>) {}
+    pub fn pass_arguments(&self, arguments: Vec<String>) -> Result<(Vec<bool>, Vec<String>), Vec<String>> {
+        let mut flags = vec![false; self.flags.len()];
+        let mut data = vec![];
+        let mut errors = vec![];
+
+        let mut no_more_flags = false;
+
+        'argument_loop: for argument in arguments {
+
+            if no_more_flags {
+
+                data.push(argument);
+                continue 'argument_loop
+            }
+
+            if argument.starts_with("--") {
+
+                if &argument == "--" {
+                    no_more_flags = true;
+                }
+
+                let flag: String = argument.chars().skip(2).collect();
+
+                for (iterated_flag_index, (iterated_flag, _)) in self.flags.iter().enumerate() {
+
+                    if &flag == *iterated_flag {
+
+                        flags[iterated_flag_index] = true;
+                        continue 'argument_loop
+                    }
+                }
+
+                errors.push(argument);
+
+            } else if argument.starts_with("-") {
+
+                for flag_short in argument.chars().skip(1) {
+                    let flag_short_option = Some(flag_short);
+
+                    for (iterated_flag_index, (_, iterated_flag)) in self.flags.iter().enumerate() {
+
+                        if &flag_short_option == iterated_flag {
+
+                            flags[iterated_flag_index] = true;
+                            continue 'argument_loop
+                        }
+                    }
+
+                    let mut error = "-".to_string();
+                    error.push(flag_short);
+
+                    errors.push(error);
+                }
+
+            } else {
+
+                data.push(argument);
+            }
+        }
+
+        if errors.len() > 0 {
+
+            Err(errors)
+        } else {
+
+            Ok((flags, data))
+        }
+    }
 
 }
 

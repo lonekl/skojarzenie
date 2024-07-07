@@ -49,7 +49,9 @@ impl Command {
             if argument.starts_with("--") {
 
                 if &argument == "--" {
+
                     no_more_flags = true;
+                    continue 'argument_loop
                 }
 
                 let flag: String = argument.chars().skip(2).collect();
@@ -67,7 +69,7 @@ impl Command {
 
             } else if argument.starts_with("-") {
 
-                for flag_short in argument.chars().skip(1) {
+                'flag_loop: for flag_short in argument.chars().skip(1) {
                     let flag_short_option = Some(flag_short);
 
                     for (iterated_flag_index, (_, iterated_flag)) in self.flags.iter().enumerate() {
@@ -75,7 +77,7 @@ impl Command {
                         if &flag_short_option == iterated_flag {
 
                             flags[iterated_flag_index] = true;
-                            continue 'argument_loop
+                            continue 'flag_loop
                         }
                     }
 

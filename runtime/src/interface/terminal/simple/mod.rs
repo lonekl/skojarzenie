@@ -1,8 +1,8 @@
 use std::io::{Error as IOError, stdin, stdout, Write};
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use skojarzenie::separate_text;
 use skojarzenie::skoj::Skoj;
-use crate::interface::terminal::commands::separate_arguments;
+use crate::interface::terminal::commands::{COMMANDS, separate_arguments};
 use crate::interface::terminal::TerminalProjectReturn;
 
 
@@ -34,21 +34,20 @@ impl TerminalProject {
             // Dividing command into arguments:
             let arguments = separate_arguments(read_line.chars().skip(1));
 
-            // Running command:
+            // Checking if command exists:
             if arguments.is_empty() {
 
                 return TerminalProjectReturn::Continue
             }
 
-            match arguments[0].as_str() {
-                "exit" => {
-                    if arguments.len() > 1 {
-                        println!("[Exit]: Please don't use arguments for that command.");
-                    }
-                    return TerminalProjectReturn::Close
+            // Searching command:
+            match COMMANDS.iter().find(|iterated_command| iterated_command.name_id == &arguments[0]) {
+                None => {
+                    eprintln!("[Terminal]: Command \"{}\" does not exist.", arguments[0]);
                 },
-                _ => {
-                    println!("[Terminal]: Command \"{}\" does not exist.", arguments[0]);
+                Some(command) => match command.pass_arguments(arguments.iter().skip(1).map(|argument| (*argument).clone()).collect()) {
+                    Ok((flags, data)) => eprintln!("[{}]:\n\tFlags: {flags:?}.\n\tData: {data:?}", command.name_id),
+                    Err(errors) => eprintln!("[{}]: Errors there: {errors:?}", command.name_id),
                 },
             }
 

@@ -1,5 +1,5 @@
 use std::path::Path;
-use crate::interface::terminal::{TerminalProject, TerminalProjectReturn};
+use crate::interface::terminal::simple::{TerminalProject, TerminalProjectReturn};
 
 
 

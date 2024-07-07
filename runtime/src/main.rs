@@ -1,5 +1,5 @@
 use std::path::Path;
-use crate::interface::terminal::simple::{TerminalProject, TerminalProjectReturn};
+use crate::interface::terminal::{simple::TerminalProject, TerminalProjectReturn};
 
 
 
@@ -15,12 +15,13 @@ fn main() {
 
     'runtime: loop {
         match project.enter() {
-            TerminalProjectReturn::ReadError(error) => panic!("{error}"),
+            TerminalProjectReturn::Continue => {},
             TerminalProjectReturn::Enter(_) => {},
             TerminalProjectReturn::OpenNew(_) => {},
             TerminalProjectReturn::Close => {
                 break 'runtime
             },
+            TerminalProjectReturn::ReadError(error) => panic!("{error}"),
         }
     }
 

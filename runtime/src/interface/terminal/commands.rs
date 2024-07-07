@@ -1,13 +1,31 @@
 use crate::interface::terminal::TerminalProjectReturn;
 
-pub const COMMANDS: () = ();
+pub const COMMANDS: &[Command] = &[
+    Command {
+        name_id: "exit",
+        flags: &[
+            ("help", None),
+            ("say-goodbye", Some('g')),
+        ],
+        execute_code: |_, _| TerminalProjectReturn::Continue,
+    },
+    Command {
+        name_id: "don't",
+        flags: &[
+            ("ujh", Some('u')),
+            ("Polska", Some('P')),
+            ("chwała", Some('ć')),
+        ],
+        execute_code: |_, _| TerminalProjectReturn::Continue,
+    },
+];
 
 pub struct Command {
 
     pub name_id: &'static str,
-    /// List of command acceptable flags. Example `["--verbose", Some('v')]`.
+    /// List of command acceptable flags. Example `["verbose", Some('v')]`.
     pub flags: &'static [(&'static str, Option<char>)],
-    execute_code: fn(Vec<bool>, Vec<String>) -> TerminalProjectReturn,
+    pub execute_code: fn(Vec<bool>, Vec<String>) -> TerminalProjectReturn,
 
 }
 

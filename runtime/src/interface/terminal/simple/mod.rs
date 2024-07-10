@@ -48,7 +48,7 @@ impl TerminalProject {
                     eprintln!("[Terminal]: Command \"{}\" does not exist.", arguments[0]);
                 },
                 Some(command) => match command.pass_arguments(arguments.iter().skip(1).map(|argument| (*argument).clone()).collect()) {
-                    Ok((flags, data)) => eprintln!("[{}]:\n\tFlags: {flags:?}.\n\tData: {data:?}", command.name_id),
+                    Ok((flags, data)) => return (command.execute_code)(flags, data, &mut self.project),
                     Err(errors) => eprintln!("[{}]: Errors there: {errors:?}", command.name_id),
                 },
             }

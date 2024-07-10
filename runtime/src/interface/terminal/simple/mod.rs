@@ -1,6 +1,6 @@
 use std::io::{Error as IOError, stdin, stdout, Write};
 use std::path::Path;
-use skojarzenie::separate_text;
+use skojarzenie::{Project, separate_text};
 use skojarzenie::skoj::Skoj;
 use crate::interface::terminal::commands::{COMMANDS, separate_arguments};
 use crate::interface::terminal::TerminalProjectReturn;
@@ -8,7 +8,7 @@ use crate::interface::terminal::TerminalProjectReturn;
 
 pub struct TerminalProject {
 
-    skoj: Skoj<String>,
+    project: Project,
 
 }
 
@@ -17,7 +17,9 @@ impl TerminalProject {
     pub fn open(_workspace_path: &Path) -> Self {
 
         Self {
-            skoj: Skoj::new(),
+            project: Project {
+                skoj: Skoj::new(),
+            },
         }
     }
 
@@ -55,14 +57,14 @@ impl TerminalProject {
 
             // Giving chat bot your words:
             for word in separate_text(read_line) {
-                self.skoj.give_word(word);
+                self.project.skoj.give_word(word);
             }
 
-            // Giving you chat bots words:
+            // Giving your chat bots words:
             print!("[Skoj]: ");
             for _ in 0..100 {
 
-                let skoj_word = self.skoj.get_word().as_str();
+                let skoj_word = self.project.skoj.get_word().as_str();
                 print!("{skoj_word}");
 
                 if skoj_word == "." {

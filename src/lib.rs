@@ -1,4 +1,14 @@
+use crate::skoj::Skoj;
+
 pub mod skoj;
+
+
+
+pub struct Project {
+
+    pub skoj: Skoj<String>,
+
+}
 
 
 

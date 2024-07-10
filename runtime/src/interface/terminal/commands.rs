@@ -1,31 +1,39 @@
+use skojarzenie::Project;
 use crate::interface::terminal::TerminalProjectReturn;
+
+
 
 pub const COMMANDS: &[Command] = &[
     Command {
-        name_id: "exit",
-        flags: &[
-            ("help", None),
-            ("say-goodbye", Some('g')),
-        ],
-        execute_code: |_, _| TerminalProjectReturn::Continue,
+        name_id: "help",
+        flags: &[],
+        usage: "help [OPTIONS] [COMMANDS...]",
+        info: "Displays information about asked command / commands.",
+        execute_code: |_, _, _| TerminalProjectReturn::Continue,
     },
     Command {
-        name_id: "don't",
+        name_id: "exit",
         flags: &[
-            ("ujh", Some('u')),
-            ("Polska", Some('P')),
-            ("chwała", Some('ć')),
+            ("all", Some('A'), "Closes all open projects. Fails if any projects given."),
         ],
-        execute_code: |_, _| TerminalProjectReturn::Continue,
+        usage: "exit [OPTIONS] [PROJECTS...]",
+        info: "Closes given projects, current if no projects given.",
+        execute_code: |_, _, _| TerminalProjectReturn::Close,
     },
 ];
 
 pub struct Command {
 
     pub name_id: &'static str,
-    /// List of command acceptable flags. Example `["verbose", Some('v')]`.
-    pub flags: &'static [(&'static str, Option<char>)],
-    pub execute_code: fn(Vec<bool>, Vec<String>) -> TerminalProjectReturn,
+    /// List of command acceptable flags. Example `["verbose", Some('v'), "Types out all operations."]`.
+    pub flags: &'static [(&'static str, Option<char>, &'static str)],
+    /// Basic arguments, for example: `help [OPTIONS] [COMMANDS...]`.
+    /// For next line, use `\n\t`.
+    pub usage: &'static str,
+    /// Command description, with optional working example.
+    /// For next line, use `\n\t`.
+    pub info: &'static str,
+    pub execute_code: fn(Vec<bool>, Vec<String>, &mut Project) -> TerminalProjectReturn,
 
 }
 

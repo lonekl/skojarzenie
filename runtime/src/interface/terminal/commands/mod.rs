@@ -51,9 +51,9 @@ impl Command {
 
 
 
-pub fn pass_arguments<A>(built_flags: &[(&str, Option<char>, &str)], arguments: A) -> Result<(Vec<bool>, Vec<String>), Vec<String>>
+pub fn pass_arguments<'a, A>(built_flags: &[(&str, Option<char>, &str)], arguments: A) -> Result<(Vec<bool>, Vec<String>), Vec<String>>
 where
-    A: Iterator<Item = String>
+    A: Iterator<Item = &'a String>
 {
     let mut active_flags = vec![false; built_flags.len()];
     let mut data = vec![];
@@ -65,13 +65,13 @@ where
 
         if no_more_flags {
 
-            data.push(argument);
+            data.push((*argument).clone());
             continue 'argument_loop
         }
 
         if argument.starts_with("--") {
 
-            if &argument == "--" {
+            if argument == "--" {
 
                 no_more_flags = true;
                 continue 'argument_loop
@@ -88,7 +88,7 @@ where
                 }
             }
 
-            errors.push(argument);
+            errors.push((*argument).clone());
 
         } else if argument.starts_with("-") {
 
@@ -112,7 +112,7 @@ where
 
         } else {
 
-            data.push(argument);
+            data.push((*argument).clone());
         }
     }
 

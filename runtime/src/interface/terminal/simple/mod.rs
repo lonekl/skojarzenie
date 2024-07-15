@@ -60,7 +60,7 @@ impl TerminalProject {
                 self.project.skoj.give_word(word);
             }
 
-            // Giving your chat bots words:
+            // Giving you chat bot words:
             print!("[Skoj]: ");
             for _ in 0..100 {
 
